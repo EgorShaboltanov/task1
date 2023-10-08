@@ -50,7 +50,7 @@ Route::middleware('guest')->group(function() {
 
 
 // Начало группы маршрутов с пространством имен 'App\Http\Controllers\Auth'
-Route::group(['namespace'=> 'App\Http\Controllers\Auth'], function(){
+Route::group(['namespace'=> 'Auth'], function(){
      // Определение маршрута GET для страницы регистрации пользователя
     Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
      // Этот маршрут будет доступен по URL-адресу '/register'
@@ -68,7 +68,11 @@ Route::post('logout',[AuthenticatedSessionController::class,'destroy'])->name('l
 
 Route::get('/home', function () {
     return view('layouts.home');
-})->middleware('auth');
+})->middleware('auth')->name('home');
+
+
+
+Route::get('/statistics', 'OrderStatisticsController@orderStatistics')->name('statistics');
 
 
 

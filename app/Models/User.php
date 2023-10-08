@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'provider_id'); // у User может быть много заказов, поэтому hasMany
+    }
     /**
      * The attributes that are mass assignable.
      *
